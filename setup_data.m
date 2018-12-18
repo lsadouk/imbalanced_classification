@@ -138,6 +138,8 @@ imdb.images.data = dimensionNormalize(imdb.images.data); % normalize each attrib
 %label = label ./max(label); % range of label from 0 to 1
 %s_factor = max(imdb.images.labels)-min(imdb.images.labels);
 %imdb.images.labels = (imdb.images.labels-min(imdb.images.labels)) ./ s_factor ; % range from 0 to 1
+expDir = fullfile('data_preprocessed');
+if ~exist(expDir, 'dir'), mkdir(expDir) ; end
 
 imdb_filename = fullfile('data_preprocessed', strcat('imdb_',dataset,'_c.mat'));
 save(imdb_filename ,'imdb');
