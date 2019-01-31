@@ -19,7 +19,7 @@ For further information about how to compile the toolbox, please refer to the fo
 <h2>Usage</h2>
 1. You can train and test the neural network by running the file 'proj_regression.m' (<b>see examples below </b>):
 
-- using either the standard (baseline) algorithm (e.g., the standard loss function) or the cost-sensitive learning algorithm (e.g., the cost-sensitive version of the loss function) applied on ones of the following loss functions:
+- using either the standard (baseline) algorithm (e.g., the standard loss function) or the cost-sensitive learning algorithm (e.g., the cost-sensitive version of the loss function) applied on ones of the following loss functions:`L_2`,`L_2 &#959 &#963`
     * L_2
     * L_2 &#959 &#963
     * Mshinge
