@@ -1,7 +1,7 @@
-# A Cost-Sensitive Approach applied on Shallow and Deep Neural Networks for Classification of Imbalanced Data
+# A Cost-Sensitive Learning Approach applied on Shallow and Deep Neural Networks for Classification of Imbalanced Data
 A cost-sensitive learning approach for handling classification with imbalanced data
 
-Welcome. This repository contains the data and scripts comprising the article 'A Cost-Sensitive Approach applied on Shallow and Deep Neural Networks for Classification of Imbalanced Data'
+Welcome. This repository contains the data and scripts comprising the article 'A Cost-Sensitive Learning Approach applied on Shallow and Deep Neural Networks for Classification of Imbalanced Data'
 
 Included are the tools to allow you to easily run the code.
 
@@ -11,37 +11,31 @@ This readme is a brief overview and contains details for setting up and running 
 <h2>Initial requirements</h2>
 
 1. To the code, the environment needed is Matlab. So you need to install: 
-- Matlab if run on CPU mode,
-- Matlab 2016b or higher, Cuda toolkit and cuDNN linrary if run on GPU mode.
-2. To run this project, the MatConvNet Toolbox 1.0-beta25 needs to be installed and compiled. You can dowload the Toolbox by clicking on this link: http://www.vlfeat.org/matconvnet/download/matconvnet-1.0-beta25.tar.gz
+    * Matlab if run on CPU mode,
+    * Matlab 2016b or higher, Cuda toolkit and cuDNN linrary if run on GPU mode.
+2. To run this project, the MatConvNet Toolbox 1.0-beta25 needs to be installed (and saved into the main directory) and compiled. You can dowload the Toolbox by clicking on this link: http://www.vlfeat.org/matconvnet/download/matconvnet-1.0-beta25.tar.gz
 For further information about how to compile the toolbox, please refer to the following url: http://www.vlfeat.org/matconvnet/install/
 
 <h2>Usage</h2>
-There are several use cases for this project:
+1. You can train and test the neural network by running the file 'proj_regression.m' (<b>see examples below </b>):
+- using either the standard (baseline) algorithm (e.g., the standard loss function) or the cost-sensitive learning algorithm (e.g., the cost-sensitive version of the loss function) applied on ones of the following loss functions:
+    * L_2
+    * L_2 _row _sigma
+    * Mshinge
+    * Mshinge_2
+    * Mshinge_3
+    * log _row _sigma
+  
+- using either shallow and deep neural networks: 
+    * shallow neural networks such as Multi-Layer Perceptrons (MLPs), by using one of the 1D datasets: (ionosphere) / ("pid" - Pima Indians Diabetes) / (WP_Breast_Cancer) / (SPECTF_Heart) / (yeast_8l) / (car) / (satimage) / (thyroid).
+    * deep learning models such as Convolutional Neural Networks, by using one of the 2D datasets: (mnist10) / (mnist30) / (mnist40) / (mnist50).
 
-1. You can train and test the cost-sensitive approach on shallow neural networks such as Multi-Layer Perceptrons (MLPs), by using one of the 1D datasets: (ionosphere)/("pid" - Pima Indians Diabetes)/(WP_Breast_Cancer)/(SPECTF_Heart)/(yeast_8l)/(car)/(satimage)/(thyroid).
+2. You can compare the standard or cost-sensitive learning algorithm to one of existent methods including: 
+     * <b>ST1 method (Alejo et al. 2007)</b>: from the paper "Improving the performance of the RBF neural networks trained with imbalanced samples".
+     https://pdfs.semanticscholar.org/483f/afc0a2901fb184a4e18d0cb57a44e3dcf893.pdf,
+     * <b>undersampling method</b>: training an MLP with the undersampling strategy and using the l2 loss function (denoted as “l<sub>2</sub>  Bal<sub>u</sub>” in the article),
+     * <b>oversampling method</b>: training an MLP with the oversampling strategy and using the l2 loss function (denoted as “l<sub>2</sub>  Bal<sub>o</sub>” in the article).
 
-2. Or you can choose to train and test the approach on deep learning models such as Convolutional Neural Networks, by using one of the 2D datasets: (mnist10)/(mnist30)/(mnist40)/(mnist50)
-
-
-You can choose to train and test the CNN (<b>see example 1 below </b>):
-- among different prediction time interval (5-, 10-, 15-, and 20-min forecasting)
-- with either the L2 Loss function (lambda=0) or the probabilistic loss function (lambda=1)
-- on one of the following networks (freeways): H101_North_D7 / I5_North_D7 / I5_South_D7 / I5_North_D11 / I450_North_D7 / I210_West_D7 
-
-2. You can choose to test the CNN using a an available CNN which was already trained using traffic data of 'H101_North_D7' freeway (<b>see example 3 below</b>)
-If you wich to test using a CNN trained on another network (freeway), you first train the CNN using the desired network (use case 1) then call it for testing (use case 2).
-
-3. You can train and test Deep Belief Networks (DBNs) by going into 'traffic_flow_code_DBN/examples/' directory and running the file 'proj_traffic_flow_prediction_DBN.m'
-
-4. You can choose to test the DBN using a an available DBN which was already trained using traffic data of 'H101_North_D7' freeway (<b>see example 2 below</b>).
-If you wich to test using a DBN trained on another network (freeway), you first train the CNN using the desired network (use case 3) then call it for testing (use case 4).
-
-
-<b>PS. If you want to compare CNN and DBN performances with existant methods, you can try :</b>
-- the Support Vector Machin (SVM) by going into 'traffic_flow_code_SVM/' directory and running the file 'proj_traffic_flow_prediction_SVM.m'
-- the ARIMA by y going into 'traffic_flow_code_ARIMA/' directory and running the file 'proj_traffic_flow_prediction_ARIMA.m'
-- the HW-ExpS by y going into 'traffic_flow_code_HW-exp/' directory and running the file 'main.m'
 
 <h2>Examples for training and/or testing our models : </h2>
 <h3>1. Exampe of training and testing the CNN model:</h3>
