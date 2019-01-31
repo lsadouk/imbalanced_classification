@@ -21,13 +21,7 @@ For further information about how to compile the toolbox, please refer to the fo
 
 - using either the standard (baseline) algorithm (e.g., the standard loss function) or the cost-sensitive learning algorithm (e.g., the cost-sensitive version of the loss function) applied on ones of the following loss functions:
 
-`L_2`,`L_2 &#959 &#963`
-    * L_2
-    * L_2 &#959; &#963;
-    * Mshinge
-    * Mshinge_2
-    * Mshinge_3
-    * log &#959; &#963;
+    `L<sub>2</sub>`,`L<sub>2</sub> &#959; &#963;`, `Mshinge`, `Mshinge<sub>2</sub>`, `Mshinge<sub>2</sub>`, `log &#959; &#963;`,
 
 - using either shallow and deep neural networks: 
     *  shallow neural networks such as Multi-Layer Perceptrons (MLPs), by using one of the 1D datasets: (ionosphere) / ("pid" - Pima Indians Diabetes) / (WP_Breast_Cancer) / (SPECTF_Heart) / (yeast_8l) / (car) / (satimage) / (thyroid).
