@@ -19,85 +19,44 @@ For further information about how to compile the toolbox, please refer to the fo
 <h2>Usage</h2>
 1. You can train and test the neural network by running the file 'proj_regression.m' (<b>see examples below </b>):
 
-- using either the standard (baseline) algorithm (e.g., the standard loss function) or the cost-sensitive learning algorithm (e.g., the cost-sensitive version of the loss function) applied on ones of the following loss functions:
-
-    `L<sub>2</sub>`,`L<sub>2</sub> &#959; &#963;`, `Mshinge`, `Mshinge<sub>2</sub>`, `Mshinge<sub>2</sub>`, `log &#959; &#963;`,
+- using either the standard (baseline) algorithm (e.g., the standard loss function) or the cost-sensitive learning algorithm (e.g., the cost-sensitive version of the loss function) applied on ones of the following loss functions:  L<sub>2</sub>, L<sub>2</sub> &#959; &#963;, Mshinge, Mshinge<sub>2</sub>, Mshinge<sub>2</sub>, log &#959; &#963;
 
 - using either shallow and deep neural networks: 
     *  shallow neural networks such as Multi-Layer Perceptrons (MLPs), by using one of the 1D datasets: (ionosphere) / ("pid" - Pima Indians Diabetes) / (WP_Breast_Cancer) / (SPECTF_Heart) / (yeast_8l) / (car) / (satimage) / (thyroid).
     *  deep learning models such as Convolutional Neural Networks, by using one of the 2D datasets: (mnist10) / (mnist30) / (mnist40) / (mnist50).
 
 2. You can compare the standard or cost-sensitive learning algorithm to one of existent methods including: 
+- <b>undersampling method</b>: training the neural network (MLP or CNN) with the undersampling strategy,
+- <b>oversampling method</b>: training the neural network (MLP or CNN) with the oversampling strategy.
 - <b>ST1 method (Alejo et al. 2007)</b>: from the paper ["Improving the performance of the RBF neural networks trained with imbalanced samples"](https://pdfs.semanticscholar.org/483f/afc0a2901fb184a4e18d0cb57a44e3dcf893.pdf)
-- <b>undersampling method</b>: training an MLP with the undersampling strategy and using the l2 loss function (denoted as “l<sub>2</sub>  Bal<sub>u</sub>” in the article),
-- <b>oversampling method</b>: training an MLP with the oversampling strategy and using the l2 loss function (denoted as “l<sub>2</sub>  Bal<sub>o</sub>” in the article).
 
 
 <h2>Examples for training and/or testing our models : </h2>
-<h3>1. Exampe of training and testing the CNN model:</h3>
-In this example, we want to predict the exact speed at 15-min forecasting (i.e., using regression) by training the CNN based on the probabilistic loss function. 
+<h3>1. Example of training and testing our cost-sensitive learning algorithm using the Mshinge(sub)2(/sub) loss function</h3>
+In this example, we want to train our CNN using our cost-sensitive learning algorithm applied on the Mshinge(sub)2(/sub) loss function on the "Mnist30" dataset (whose numbers 1 and 3 have 20 instances while the rest of the numbers 0,2,4,5,6,7,8,9 have all 600 instances).
 
-The default data is the 'US101-North District 7' freeway (i.e., H101-North-D7) from september 1 to september 30 (2017) from 6AM to 8:55PM. 3/4th of the data is used for training and 1/4th is for testing.
-
-The measure of performance is RMSE which gives the error in miles/hour.
-
-To do so, follow these steps:
-1. run proj_traffic_flow_prediction_10wStr.m
+To do so, first, change the learning rate in the code to the following (opts.learningRate =0.0001). Then, follow these steps:
+1. run proj_classification.m
 2. select the following:
-- Please forecasting for which you wish to predict speed (1)for 5-min, (2)for 10-min, (3)...): 1
-- Please select the prediction type: (c)classification / (r)regression  r
-- Please enter the k-fold (k-1 for training & 1 for testing)_(0 for testing):  4
+     * Please select the method for handling imbalanced data (o)data pre-processing: Oversampling, (u)data pre-processing: Undersampling, (n)nothing  n
+     * Please enter the loss (0)log, (1)CS log, (2)msHinge, (3)CS msHinge, (4)L2, (5)CS-ST L2, (6)our CS L2,(7)CS_sum L2,(8)sq.hinge,(9)CS sq.hinge,(10)L2 estimate,(11)CS L2 estimate,(12)cub.hinge,(13)CS cub.hinge 9
+     * Please set the weighting parameter - Example: (2)for MLPs and (50)for CNNs 50
+     * Please select the dataset:(ionosphere)/("pid" - Pima Indians Diabetes) /(WP_Breast_Cancer)/(SPECTF_Heart)/(yeast_8l)/(car)/(satimage)/(thyroid)/(mnist10)/(mnist30)/(mnist40)/(mnist50) mnist30
 
-- Please select the number of days (15, 21, 27, 30 or 59):  30
-- Please enter the loss (0)L2 loss, (1)P loss:  1
-- Please select the freeway: H101_North_D7 / H101_South_D7 / I5_North_D7 / I5_South_D7 / I5_North_D11 / I450_North_D7 / I210_West_D7 H101_North_D7
+The code :
+- outputs the lowest Geometric Mean (G-Mean) for the testing set.
+- displays a plot of the objective function and G-Mean per epoch for both training and testing sets.
+- displays the weights of the 1st convolutional layer filters.
 
-The code will:
-- display a plot of the train RMSEs and test RMSEs per epoch.
-- output the lowest test RMSE.
-- display the weights of the 1st convolutional layer filters.
+<h3>2. Example of training and testing the over-sampling technique using the L(sub)2(/sub) loss function</h3>
+In this example, we want to train an MLP using the over-sampling technique applied on the L(sub)2(/sub) loss function on the "SPECTF_Heart" dataset.
 
-<h3>2. Example of testing the DBN model:</h3>
-In this example, we want to predict the exact speed for network points of 'I5_North_D7' freeway at 15-min forecasting by testing/applying a DBN which was previously trained based on the probabilistic loss function using data of 'US101-North District 7' freeway (i.e., H101-North-D7) .
-
-To do so, follow these steps:
-1. Go to 'traffic_flow_code_DBN' directory and run the file 'proj_traffic_flow_prediction_DBN.m'.
+To do so, first, change the learning rate in the code to the following (opts.learningRate =0.01). Then, follow these steps:
+1. run proj_classification.m
 2. select the following:
-- Please enter the k-fold (k-1 for training & 1 for testing)_(0 for testing):  0
-
-- Please enter the loss (0)L2 loss, (1)P loss:  1
-
-- Please select the number of days (15, 21, 27, 30 or 59):  30
-
-- Enter prediction point:  3
-
-- Please select the testing freeway: H101_North_D7 / I5_North_D7 / I5_South_D7 / I5_North_D11 / I450_North_D7 / I210_West_D7: I5_North_D7
-
-- Please select the input freeway used for training: H101_North_D7 / I5_North_D7 / I5_South_D7 / I5_North_D11 / I450_North_D7 / I210_West_D7: H101_North_D7
-
-<b>The displayed result is :</b>
-Classification error (testing):     5.53
-
-<h3>3. Example of testing the CNN model:</h3>
-In this example, we want to predict the exact speed for network points of 'I5_North_D11' freeway at 15-min forecasting by testing/applying a CNN which was previously trained based on the probabilistic loss function using data of 'US101-North District 7' freeway (i.e., H101-North-D7) .
-
-To do so, follow these steps:
-
-1. Go to 'traffic_flow_code_CNN' directory and run the file 'proj_traffic_flow_prediction_10wStr.m'.
-2. select the following:
-- Please forecasting for which you wish to predict speed (1)for 5-min, (2)for 10-min, (3)...): 3
-
-- Please select the prediction type: (c)classification / (r)regression  r
-
-- Please enter the loss (0)L2 loss, (1)P loss:  1
-
-- Please select the freeway used for training: H101_North_D7 / I5_North_D7 / I5_South_D7 / I5_North_D11 / I450_North_D7 / I210_West_D7: H101_North_D7
-
-- Please enter the k-fold (k-1 for training & 1 for testing)_(0 for testing):  0
-
-- Please select the testing freeway: H101_North_D7 / I5_North_D7 / I5_South_D7 / I5_North_D11 / I450_North_D7 / I210_West_D7: I5_North_D11
-
-- Please select the number of days (15, 21, 27, 30 or 59):  30
-
-<b>The displayed result is :</b>
-Lowest validation error is 3.821451 in epoch 1
+     * Please select the method for handling imbalanced data (o)data pre-processing: Oversampling, (u)data pre-processing: Undersampling, (n)nothing  no
+     * Please enter the loss (0)log, (1)CS log, (2)msHinge, (3)CS msHinge, (4)L2, (5)CS-ST L2, (6)our CS L2,(7)CS_sum L2,(8)sq.hinge,(9)CS sq.hinge,(10)L2 estimate,(11)CS L2 estimate,(12)cub.hinge,(13)CS cub.hinge 5
+     * Please set the weighting parameter - Example: (2)for MLPs and (50)for CNNs 2
+     * Please select the dataset:(ionosphere)/("pid" - Pima Indians Diabetes) /(WP_Breast_Cancer)/(SPECTF_Heart)/(yeast_8l)/(car)/(satimage)/(thyroid)/(mnist10)/(mnist30)/(mnist40)/(mnist50) SPECTF_Heart
+     
+     
