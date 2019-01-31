@@ -20,7 +20,7 @@ lambda =input('Please enter the loss (0)log, (1)CS log, (2)msHinge, (3)CS msHing
 opts.weight_parameter =input('Please set the weighting parameter - Example: (2)for MLPs and (50)for CNNs ');
 
 kfold = 3; % kfold =input('Please enter the k-fold (k-1 for training & 1 for testing)_(0 for testing):  '); % k-fold = 9 
-dataset =input('(abalone)/(ionosphere)/("pid" - Pima Indians Diabetes)/(WP_Breast_Cancer)/(SPECTF_Heart)/(yeast_8l)/(car)/(satimage)/(thyroid)/(mnist) ', 's');
+dataset =input('Please select the dataset:(ionosphere)/("pid" - Pima Indians Diabetes)/(WP_Breast_Cancer)/(SPECTF_Heart)/(yeast_8l)/(car)/(satimage)/(thyroid)/(mnist10)/(mnist30)/(mnist40)/(mnist50) ', 's');
 
 %opts.expDir is where trained networks and plots are saved.
 opts.expDir = fullfile('result_nets',strcat('data_', dataset,'_r', ...
