@@ -23,11 +23,11 @@ For further information about how to compile the toolbox, please refer to the fo
 
 `L_2`,`L_2 &#959 &#963`
     * L_2
-    * L_2 &#959 &#963
+    * L_2 &#959; &#963;
     * Mshinge
     * Mshinge_2
     * Mshinge_3
-    * log &#959 &#963 
+    * log &#959; &#963;
 
 - using either shallow and deep neural networks: 
     *  shallow neural networks such as Multi-Layer Perceptrons (MLPs), by using one of the 1D datasets: (ionosphere) / ("pid" - Pima Indians Diabetes) / (WP_Breast_Cancer) / (SPECTF_Heart) / (yeast_8l) / (car) / (satimage) / (thyroid).
