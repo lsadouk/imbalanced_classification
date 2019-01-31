@@ -19,7 +19,7 @@ For further information about how to compile the toolbox, please refer to the fo
 <h2>Usage</h2>
 1. You can train and test the neural network by running the file 'proj_regression.m' (<b>see examples below </b>):
 
-- using either the standard (baseline) algorithm (e.g., the standard loss function) or the cost-sensitive learning algorithm (e.g., the cost-sensitive version of the loss function) applied on ones of the following loss functions:  <b>L<sub>2</sub></b>, L<sub>2</sub> &#959; &#963;, Mshinge, Mshinge<sub>2</sub>, Mshinge<sub>2</sub>, log &#959; &#963;
+- using either the standard (baseline) algorithm (e.g., the standard loss function) or the cost-sensitive learning algorithm (e.g., the cost-sensitive version of the loss function) applied on ones of the following loss functions:  <b>L<sub>2</sub></b>, <b>L<sub>2</sub> &#959; &#963;</b>, <b>Mshinge</b>, <b>Mshinge<sub>2</sub></b>, <b>Mshinge<sub>2</sub></b>, <b>log &#959; &#963;</b>.
 
 - using either shallow and deep neural networks: 
     *  shallow neural networks such as Multi-Layer Perceptrons (MLPs), by using one of the 1D datasets: (ionosphere) / ("pid" - Pima Indians Diabetes) / (WP_Breast_Cancer) / (SPECTF_Heart) / (yeast_8l) / (car) / (satimage) / (thyroid).
@@ -33,7 +33,7 @@ For further information about how to compile the toolbox, please refer to the fo
 
 <h2>Examples for training and/or testing our models : </h2>
 <h3>1. Example of training and testing our cost-sensitive learning algorithm using the Mshinge<sub>2</sub> loss function</h3>
-In this example, we want to train our CNN using our cost-sensitive learning algorithm applied on the Mshinge(sub)2(/sub) loss function on the "Mnist30" dataset (whose numbers 1 and 3 have 20 instances while the rest of the numbers 0,2,4,5,6,7,8,9 have all 600 instances).
+In this example, we want to train our CNN using our cost-sensitive learning algorithm applied on the Mshinge<sub>2</sub> loss function on the "Mnist30" dataset (whose numbers 1 and 3 have 20 instances while the rest of the numbers 0,2,4,5,6,7,8,9 have all 600 instances).
 
 To do so, first, change the learning rate in the code to the following (opts.learningRate =0.0001). Then, follow these steps:
 1. run proj_classification.m
@@ -48,8 +48,8 @@ The code :
 - displays a plot of the objective function and G-Mean per epoch for both training and testing sets.
 - displays the weights of the 1st convolutional layer filters.
 
-<h3>2. Example of training and testing the over-sampling technique using the L(sub)2(/sub) loss function</h3>
-In this example, we want to train an MLP using the over-sampling technique applied on the L(sub)2(/sub) loss function on the "SPECTF_Heart" dataset.
+<h3>2. Example of training and testing the over-sampling technique using the L<sub>2</sub> loss function</h3>
+In this example, we want to train an MLP using the over-sampling technique applied on the L<sub>2</sub> loss function on the "SPECTF_Heart" dataset.
 
 To do so, first, change the learning rate in the code to the following (opts.learningRate =0.01). Then, follow these steps:
 1. run proj_classification.m
@@ -60,3 +60,4 @@ To do so, first, change the learning rate in the code to the following (opts.lea
      * Please select the dataset:(ionosphere)/("pid" - Pima Indians Diabetes) /(WP_Breast_Cancer)/(SPECTF_Heart)/(yeast_8l)/(car)/(satimage)/(thyroid)/(mnist10)/(mnist30)/(mnist40)/(mnist50) SPECTF_Heart
      
      
+> PS: You can choose your own weighting parameter &#955; for the cost-sensitive approach (instead of the suggested ones: '2' for MLPs and '50' for CNNs).
